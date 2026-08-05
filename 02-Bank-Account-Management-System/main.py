@@ -95,6 +95,4 @@ while True:
 
     else :
         print("\nInvalid Choice")
-    
 
-# a1.deposite(d)
