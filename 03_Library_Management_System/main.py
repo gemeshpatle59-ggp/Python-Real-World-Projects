@@ -2,7 +2,7 @@ class Library:
     def __init__(self):                                                     
         self.books = {
             "python" : True,
-            "java" : True,
+            "java" : False,
             "C++" : False,
             "C"  : True
         }
@@ -106,7 +106,9 @@ while True:
             a1.show_books()
 
         elif choice == "6":
+            print("-----------------------")
             print("-------Thank you-------")
+            print("-----------------------")
             break
         else:
             print("something Went wrong")    
