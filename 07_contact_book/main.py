@@ -7,7 +7,6 @@ contact_book = {
 }
 
 
-
 def load_data():
     global contact_book
     if os.path.exists("contact_book.json"):
