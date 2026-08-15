@@ -6,7 +6,6 @@ contact_book = {
     "gemesh" : 9175142374
 }
 
-
 def load_data():
     global contact_book
     if os.path.exists("contact_book.json"):
@@ -76,6 +75,13 @@ def delete_contact():
     except ValueError:
         print("enter proper contact index number..")
 
+
+def show_contact():
+    print("\n====CONTACT BOOK====\n")
+    for i,( name,number ) in enumerate (contact_book.items(),start=1 ):
+        print(f"{i}.{name} : {number}")
+    print("\n")        
+
 load_data()
 
 print("\n","="*30)
@@ -88,11 +94,12 @@ while True:
     print("2. To Search Contact in Contactbook..")
     print("3. To Update Contact of Contactbook..")
     print("4. TO Delete Contact of Contactbook..")
-    print("5. To Exit..")
+    print("5. TO Show all Contacts in Contact Book..")
+    print("6. To Exit..")
 
 
     try: 
-        choice = int(input("Enter your choice from ( 1 to 5) here..: "))
+        choice = int(input("Enter your choice from ( 1 to 6) here..: "))
     except ValueError:
         print("\n====enter proper choice..=====\n")
         continue
@@ -122,6 +129,9 @@ while True:
         save_contact()
 
     elif choice == 5:
+        show_contact()    
+
+    elif choice == 6:
         print("\n=========================")
         print("===Contact book closed===")    
         print("=========================\n")
