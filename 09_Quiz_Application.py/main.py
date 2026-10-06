@@ -84,7 +84,7 @@ def choose_question():
     print(f"\nCorrect answer : {right_ans}")
     print(f"Wrong Answer   : {wrong_ans}")
     print(f"Total quetion  : {len(questions)}")   
-    print(f"Final score is : {(right_ans/(len(questions))*100)}%\n")               
+    print(f"Final score is : {(right_ans/(len(questions))*100):.2f}%\n")               
 
 
 load_question()
