@@ -1,11 +1,11 @@
 # Password Manager	Save and search passwords securely in a simple project.
 
-
 import string
 import json
 import os
 from secrets import choice
 from cryptography.fernet import Fernet
+
 
 if not os.path.exists("secret.key"):
     key = Fernet.generate_key()
@@ -76,6 +76,7 @@ def Search_pasward(name):
 
     print("\n=====PASSWORD NOT FOUND=====\n")    
 
+
 def view_all():
     print("\n========ALL PASSWORDS========")
 
@@ -89,6 +90,7 @@ def delete_password(name):
     for names in password_manager:
         if names["website/app"].lower().replace(" ","") == name.lower().replace(" ",""):
             password_manager.remove(names)
+            print("PASSWORD DELETED SUCCESSFULLY")
             return
     print("======PASSWORD NOT FOUND======")    
 
@@ -99,6 +101,10 @@ def password_generator():
     except ValueError:
         print("please enter the valid length.")    
         return None
+    if n <= 0:
+        print("Password length must be greater than 0.")
+        return None
+        
     password = ""
 
     for i in range(n):
@@ -132,9 +138,9 @@ while True:
                 o = password_generator()
                 print(f"Generated Password: {o}")
 
-                use_password = input("YOU WANT TO USE THIS PASSWARD.(yes/no): ")  
+                use_password = input("YOU WANT TO USE THIS PASSWARD.(y/n): ")  
 
-                if use_password != "yes":
+                if use_password != "y":
                     print("passward discarded.")
                     continue
 
@@ -168,4 +174,6 @@ while True:
             print("\nPLEASE ENTER THE PROPER user_CHOICE FROM (1 to 6).")
 
     except ValueError:
-        print("PLEASE ENTER VALID user_CHOICE .")                    
+        print("PLEASE ENTER VALID user_CHOICE .")      
+
+                      
