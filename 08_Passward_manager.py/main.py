@@ -96,21 +96,23 @@ def delete_password(name):
 
 def password_generator():
     try:
-        n = int(input("ENTER TEH LENGTH OF THE PASSWORD.: "))
+        n = int(input("ENTER TEH LENGTH OF THE PASSWORD betn (6 to 18).: "))
 
     except ValueError:
         print("please enter the valid length.")    
         return None
-    if n <= 0:
+    if 6 <= n <= 18:
         print("Password length must be greater than 0.")
-        return None
-        
-    password = ""
 
-    for i in range(n):
-        password += choice(string.ascii_letters + string.digits + string.punctuation)
+        password = ""
 
-    return password
+        for _ in range(n):
+            password += choice(string.ascii_letters + string.digits + string.punctuation)
+
+        return password
+
+    else:
+        return False
 
 load_file()
 
@@ -136,7 +138,10 @@ while True:
 
             if password_type == "g":
                 o = password_generator()
-                print(f"Generated Password: {o}")
+                if o == False:
+                    o = input("ENTER YOUR PASSWORD HERE.: ")
+                else:
+                    print(f"Generated Password: {o}")
 
                 use_password = input("YOU WANT TO USE THIS PASSWARD.(y/n): ")  
 
