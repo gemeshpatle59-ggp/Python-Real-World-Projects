@@ -185,5 +185,10 @@ if card == Atm["Card_no"]:
             print("[ERROR] Invalid selecation. Please choose a number from 1 to 4")
 
 else:
-    forgot_pin()            
+    print("\nWrong pin...")
+    print("Enter 'YES' to forgot pin else 'NO'...")
+    choice = input("Enter your choice...: ").strip().upper()
+    if choice == "YES":
 
+        forgot_pin()   
+            
