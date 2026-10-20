@@ -1,3 +1,5 @@
+
+
 class BankAccount:
     def __init__(self,name,balance,accountno):
         self.__balance = balance
@@ -38,7 +40,7 @@ class BankAccount:
                     print("Invalid Amount")
                     return    
     def check_balance(self):
-        print(f"the balance is {self.__balance}Rs")     
+        print(f"the balance is {self.__balance} Rs")     
         print("\n..")
 
 a1 = BankAccount("Gemesh",0,12321)
