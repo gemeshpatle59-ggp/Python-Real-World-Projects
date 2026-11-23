@@ -82,4 +82,23 @@ class EmployeeManagement:
         self.save_data()
         print("Employee added successfully!")
 
- 
+    # View All Employees
+    def view_employees(self):
+
+        if not self.employees:
+            print("No employee records found!")
+            return
+
+        for emp_id, emp in self.employees.items():
+
+            print("\n------------------------------")
+            print("Employee ID :", emp_id)
+            print("Name        :", emp["name"])
+            print("Age         :", emp["age"])
+            print("Department  :", emp["department"])
+            print("Designation :", emp["designation"])
+            print("Salary      :", emp["salary"])
+            print("Phone       :", emp["phone"])
+            print("Joining Date:", emp["joining_date"])
+            print("Attendance  :", emp["attendance"])
+
