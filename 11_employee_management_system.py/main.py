@@ -177,3 +177,22 @@ class EmployeeManagement:
         self.save_data()
         print("Employee updated successfully!")
 
+    # Delete Employee
+    def delete_employee(self):
+
+        emp_id = input("Enter Employee ID: ").strip()
+
+        if emp_id not in self.employees:
+            print("Employee not found!")
+            return
+
+        confirm = input("Are you sure? (yes/no): ").lower()
+
+        if confirm == "yes":
+            del self.employees[emp_id]
+            self.save_data()
+            print("Employee deleted successfully!")
+        else:
+            print("Deletion cancelled!")
+
+    # Salary Management
