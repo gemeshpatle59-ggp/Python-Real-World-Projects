@@ -113,3 +113,67 @@ class EmployeeManagement:
         else:
             print("Employee not found!")
 
+    # Update Employee
+    def update_employee(self):
+
+        emp_id = input("Enter Employee ID: ").strip()
+
+        if emp_id not in self.employees:
+            print("Employee not found!")
+            return
+
+        emp = self.employees[emp_id]
+
+        print("""
+1. Name
+2. Age
+3. Department
+4. Designation
+5. Salary
+6. Phone
+7. Joining Date
+""")
+
+        choice = input("Select field to update: ").strip()
+
+        fields = {
+            "1": "name",
+            "2": "age",
+            "3": "department",
+            "4": "designation",
+            "5": "salary",
+            "6": "phone",
+            "7": "joining_date"
+        }
+
+        if choice not in fields:
+            print("Invalid choice!")
+            return
+
+        field = fields[choice]
+        new_value = input(f"Enter new {field}: ").strip()
+
+        if not new_value:
+            print("Value cannot be empty!")
+            return
+
+        try:
+            if field == "age":
+                new_value = int(new_value)
+                if new_value <= 0:
+                    raise ValueError
+
+            elif field == "salary":
+                new_value = float(new_value)
+                if new_value < 0:
+                    raise ValueError
+
+        except ValueError:
+            print("Invalid numeric value!")
+            return
+
+        emp[field] = new_value
+
+        self.save_data()
+        print("Employee updated successfully!")
+
