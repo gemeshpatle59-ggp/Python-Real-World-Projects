@@ -102,3 +102,14 @@ class EmployeeManagement:
             print("Joining Date:", emp["joining_date"])
             print("Attendance  :", emp["attendance"])
 
+    # Search Employee
+    def search_employee(self):
+
+        emp_id = input("Enter Employee ID: ").strip()
+
+        if emp_id in self.employees:
+            print("\nEmployee Found!")
+            print(self.employees[emp_id])
+        else:
+            print("Employee not found!")
+
