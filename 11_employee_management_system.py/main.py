@@ -26,3 +26,60 @@ class EmployeeManagement:
         with open(self.filename, "w") as file:
             json.dump(self.employees, file, indent=4)
 
+   # Add Employee
+    def add_employee(self):
+
+        emp_id = input("Enter Employee ID: ").strip()
+
+        if not emp_id:
+            print("Employee ID cannot be empty.")
+            return
+
+        if emp_id in self.employees:
+            print("Employee ID already exists!")
+            return
+
+        name = input("Enter Name: ").strip()
+        age = input("Enter Age: ").strip()
+        department = input("Enter Department: ").strip()
+        designation = input("Enter Designation: ").strip()
+        salary = input("Enter Salary: ").strip()
+        phone = input("Enter Phone Number: ").strip()
+        joining_date = input("Enter Joining Date: ").strip()
+
+        if not all([name, age, department, designation,
+                    salary, phone, joining_date]):
+            print("All fields are required!")
+            return
+
+        try:
+            age = int(age)
+            salary = float(salary)
+
+            if age <= 0 or salary < 0:
+                print("Invalid age or salary!")
+                return
+
+        except ValueError:
+            print("Age and salary must be numeric!")
+            return
+
+        self.employees[emp_id] = {
+            "name": name,
+            "age": age,
+            "department": department,
+            "designation": designation,
+            "salary": salary,
+            "phone": phone,
+            "joining_date": joining_date,
+            "attendance": {
+                "present": 0,
+                "absent": 0,
+                "leave": 0
+            }
+        }
+
+        self.save_data()
+        print("Employee added successfully!")
+
+ 
