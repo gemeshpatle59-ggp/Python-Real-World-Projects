@@ -196,3 +196,154 @@ class EmployeeManagement:
             print("Deletion cancelled!")
 
     # Salary Management
+    def salary_management(self):
+
+        emp_id = input("Enter Employee ID: ").strip()
+
+        if emp_id not in self.employees:
+            print("Employee not found!")
+            return
+
+        emp = self.employees[emp_id]
+
+        monthly = emp["salary"]
+        yearly = monthly * 12
+
+        print("\nSalary Report")
+        print("Employee:", emp["name"])
+        print("Monthly Salary:", monthly)
+        print("Yearly Salary:", yearly)
+
+    # Attendance Management
+    def attendance_management(self):
+
+        emp_id = input("Enter Employee ID: ").strip()
+
+        if emp_id not in self.employees:
+            print("Employee not found!")
+            return
+
+        emp = self.employees[emp_id]
+
+        print("""
+1. Present
+2. Absent
+3. Leave
+""")
+
+        choice = input("Select attendance: ").strip()
+
+        options = {
+            "1": "present",
+            "2": "absent",
+            "3": "leave"
+        }
+
+        if choice not in options:
+            print("Invalid choice!")
+            return
+
+        status = options[choice]
+
+        emp["attendance"][status] += 1
+
+        self.save_data()
+        print("Attendance marked successfully!")
+
+    # Employee Statistics
+    def statistics(self):
+
+        if not self.employees:
+            print("No employee records!")
+            return
+
+        salaries = [
+            emp["salary"]
+            for emp in self.employees.values()
+        ]
+
+        departments = set(
+            emp["department"]
+            for emp in self.employees.values()
+        )
+
+        print("\n========== STATISTICS ==========")
+
+        print("Total Employees:", len(self.employees))
+        print("Total Departments:", len(departments))
+        print("Average Salary:", sum(salaries) / len(salaries))
+        print("Highest Salary:", max(salaries))
+        print("Lowest Salary:", min(salaries))
+
+        print("\nDepartment-wise Employees:")
+
+        for department in departments:
+            count = sum(
+                1 for emp in self.employees.values()
+                if emp["department"] == department
+            )
+            print(department, ":", count)
+
+    # Main Menu
+    def run(self):
+
+        while True:
+
+            print("""
+====================================
+       EMPLOYEE MANAGEMENT SYSTEM
+====================================
+
+1. Add Employee
+2. View All Employees
+3. Search Employee
+4. Update Employee
+5. Delete Employee
+6. Salary Management
+7. Attendance Management
+8. Employee Statistics
+9. Exit
+
+====================================
+""")
+
+            choice = input("Enter Your Choice: ").strip()
+
+            if choice == "1":
+                self.add_employee()
+
+            elif choice == "2":
+                self.view_employees()
+
+            elif choice == "3":
+                self.search_employee()
+
+            elif choice == "4":
+                self.update_employee()
+
+            elif choice == "5":
+                self.delete_employee()
+
+            elif choice == "6":
+                self.salary_management()
+
+            elif choice == "7":
+                self.attendance_management()
+
+            elif choice == "8":
+                self.statistics()
+
+            elif choice == "9":
+                self.save_data()
+                print("Thank you for using EMS!")
+                break
+
+            else:
+                print("Invalid choice! Try again.")
+
+
+# Run Application
+if __name__ == "__main__":
+
+    app = EmployeeManagement()
+    app.run()
