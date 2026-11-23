@@ -21,4 +21,8 @@ class EmployeeManagement:
 
         return {}
 
-    
+# Save JSON data
+    def save_data(self):
+        with open(self.filename, "w") as file:
+            json.dump(self.employees, file, indent=4)
+
