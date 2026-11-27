@@ -2,9 +2,6 @@ import json
 import os
 
 
-
-
-
 contact_book = {
     "gemesh" : 9175142374
 }
