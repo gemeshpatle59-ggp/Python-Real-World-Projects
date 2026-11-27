@@ -125,6 +125,7 @@ while True:
     elif choice == 4:
 
 
+
         delete_contact()
         save_contact()
 
